@@ -1,8 +1,6 @@
 # Developer Setup
 
-Um gemeinsam an einem Software oder Web-Projekt arbeiten zu können, braucht es ein paar Entwicklerwerkzeuge und Systemeinstellungen. Diese Anleitung zeigt, wie du auf deinem Computer Git, SSH, Node.js, Python und Visual Studio Code installieren und konfigurieren kannst. Ziel soll es sein, dass alle Kollegen eine ähnliche Entwicklungsumgebung haben und sich voll und ganz auf großartige Investigativ- und  Datengeschichten konzentrieren können.
-
-Die Anleitung richtig sich sowohl an Windows- als auch MacOS-Benutzer. Dabei gilt es zu beachten, dass sich hier in einigen Fällen die einzelnen Installationsschritte unterscheiden.  
+Um gemeinsam an einem Software- oder Web-Projekt arbeiten zu können, braucht es ein paar Entwicklerwerkzeuge und Systemeinstellungen. Diese Anleitung hilft dabei Git, SSH, Node.js, Python und Visual Studio Code auf einem neuen Computer (Windows oder Mac) zu installieren und konfigurieren.
 
 ## Kommandozeile und Git-Installation
 
@@ -22,15 +20,25 @@ User is not in the sudoers file. This incident will be reported.
 
 Um einen Benutzer Adminrechte zu erteilen, muss man in *Systemeinstellungen > Benutzer & Gruppen* einen Haken bei *Der Benutzer darf diesen Computer verwalten* setzen.
 
-### Windows
+### Windows 7
 
-Die Windows-Eingabeaufforderung ist etwas gewöhnungsbedürftig und verwendet andere Befehle als Bash. Glücklicherweise wird bei der Installation von Git gleichzeitig die sogenannte Git-Bash mitinstalliert, welche die wichtigsten Bash-Befehle unterstützt.
+Die Windows-Eingabeaufforderung *cmd* ist für die meisten Benutzer etwas gewöhnungsbedürftig. Glücklicherweise wird bei der Installation von Git gleichzeitig Git-Bash mitinstalliert, welche die wichtigsten Bash-Befehle unterstützt und so funktioniert wie auf einem MacOS- oder Linux-System.
 
 Git kann von dieser Seite heruntergeladen werden: <https://git-scm.com/download/win>
 
-Nach dem Herunterladen kann das Installationsprogramm ausgeführt werden. Dies erfordert Administratorrechte *Rechtsklick -> Als Administrator ausführen*. Bei BR-Computer muss dazu einmalig ein Adminstrator-Account *ADM-NachnameV* eingerichtet werden. Ansprechpartner dafür ist die HA IT (-40000).
+Nach dem Herunterladen kann das Installationsprogramm ausgeführt werden. Dies erfordert Administratorrechte (*Rechtsklick -> Als Administrator ausführen*). Beim Installationsprozess kann man alle Standardoptionen unverändert lassen und sich einfach mit *Weiter* durchklicken. Nach der Installation kann man **Git Bash** im Startmenü aufrufen, um einen „normale“ Bash-Kommandozeile zu öffnen.
 
-Beim Installationsprozess kann man alle Standardoptionen unverändert lassen und sich einfach mit *Weiter* durchklicken. Nach der Installation kann man **Git Bash** im Startmenü aufrufen, um einen „normale“ Bash-Kommandozeile zu öffnen.
+### Windows 10
+
+Die neueste Version von Windows unterstützt das sogenannte *Windows-Subsystems für Linux (WSL)*. Dadurch kann innerhalb von Windows eine virtualisierte Installation von Linux hinzugefügt werden. Diese läuft in einem Terminal-Fenster und bringt die Linux-Shell *bash* mit.
+
+Zum Aktivieren des WSL muss die *PowerShell* mit Administratorrechten gestartet (*Rechtsklick -> Als Administrator ausführen*) und folgender Befehl ausgeführt werden:
+
+```powershell
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+```
+
+Die Installation einer Linux-Distribution erfolgt über den Windows Store. Empfehlenswert ist zum Beispiel die Linux-Distribution [Ubuntu](https://www.microsoft.com/de-de/p/ubuntu/9nblggh4msv6).
 
 ## Git einrichten
 
@@ -97,7 +105,7 @@ SSH-Agent im Hintergrund starten:
 eval "$(ssh-agent -s)"
 ```
 
-Damit der Schlüssel zukünftig automatisch geladen und das Passwort im MacOS-Schlüsselbund (Keychain) gespeichert wird, muss die SSH-Konfiguration unter `~/.ssh/config` angepasst werden. Außerdem geben wir einen alternativen SSH-Port für Github an, da der Standard-Port 22 in Unternehmensnetzwerken oftmals geblockt wird. Gibt es die Konfigurationsdatei noch nicht, sollte sie neu angelegen werden.
+Damit der Schlüssel zukünftig automatisch geladen und das Passwort im MacOS-Schlüsselbund (Keychain) gespeichert wird, muss die SSH-Konfiguration `~/.ssh/config` angepasst werden. Außerdem geben wir einen alternativen SSH-Port für Github an, da der Standard-Port 22 in Unternehmensnetzwerken oftmals geblockt wird. Gibt es die Konfigurationsdatei noch nicht, sollte sie neu angelegen werden.
 
 ```shell
 nano ~/.ssh/config
@@ -116,7 +124,7 @@ Host github.com
   Port 443
 ```
 
-Datei schließen (Ctrl + X) und speichern (Y).
+Datei schließen (`Ctrl` + `X`) und speichern (`Y`).
 
 Jetzt kann der SSH-Schlüssel hinzugefügt werden:
 
@@ -138,7 +146,7 @@ SSH-Schlüssel hinzugefügen:
 ssh-add ~/.ssh/id_rsa
 ```
 
-In vielen Unternehmensnetzwerken wird der Standard-SSH-Port (22) blockiert. Um einen alternativen Port für Github (443) anzugeben, muss die SSH-Konfiguration unter `~/.ssh/config` angepasst werden. Gibt es die Konfigurationsdatei noch nicht, sollte sie neu angelegen werden.
+In vielen Unternehmensnetzwerken wird der Standard-SSH-Port (22) blockiert. Um einen alternativen Port für Github (443) anzugeben, muss die SSH-Konfiguration `~/.ssh/config` angepasst werden. Gibt es die Konfigurationsdatei noch nicht, sollte sie neu angelegen werden.
 
 ```shell
 nano ~/.ssh/config
@@ -146,13 +154,13 @@ nano ~/.ssh/config
 
 Folgende Zeilen einfügen oder ändern:
 
-```
+```ssh-config
 Host github.com
   Hostname ssh.github.com
   Port 443
 ```
 
-Datei schließen (Strg + X) und speichern (Y).
+Datei schließen (`Strg` + `X`) und speichern (`Y`).
 
 ## Github & SSH
 
@@ -162,29 +170,27 @@ Um auf Repository von Github zugreifen (klonen, pushen, ...) zu können, muss de
 cat ~/.ssh/id_rsa.pub
 ```
 
-Diese Ausgabe dieses Befehls von `ssh-rsa ...` bis `... vorname.name@br.de` kopieren. Unter Windows geht das in Git Bash mit *Strg + Einf*, unter MacOS im Terminal mit *Cmd + C*.
+Diese Ausgabe dieses Befehls von `ssh-rsa ...` bis `... vorname.name@br.de` kopieren. Unter Windows geht das in Git Bash mit `Strg` + `Einf`, unter MacOS mit `Cmd` + `C`.
 
-Auf Github kann der Key auf folgender Seite hinterlegt werden: <https://github.com/settings/keys>
+Auf Github kann der Key auf folgender Seite hinterlegt werden: <https://github.com/settings/keys>. Der Link funktioniert natürlich nur, wenn man sich vorher bei Github angemeldet hat.
 
-Der Link funktioniert natürlich nur, wenn man sich vorher bei Github angemeldet hat.
-
-## Code Editor
+## Visual Studio Code
 
 ## Node.js
 
 ## Python
 
-### Homebrew
+## Homebrew
 
 ```shell
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-### ZSH
+## ZSH
 
-### PATH-Variable
+## PATH-Variable
 
-### Inspiration
+## Inspiration
 
 - New York Times: [Set Up Your Mac Like an Interactive News Developer](https://open.nytimes.com/set-up-your-mac-like-an-interactive-news-developer-bb8d2c4097e5)
 - NPR: [How to Setup Your Mac to Develop News Applications Like We Do](https://blog.apps.npr.org/2013/06/06/how-to-setup-a-developers-environment.html)
