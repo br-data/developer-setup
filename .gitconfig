@@ -1,0 +1,38 @@
+[user]
+  name = Steffen Kühne
+  email = stekhn@gmail.com
+
+[alias]
+  pu = pull
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  ds = diff --staged
+  all = add -A
+  pod = push origin develop
+  pom = push origin master
+  cod = checkout develop
+  com = checkout master
+  unstage = reset HEAD *
+  rs = reset --soft HEAD~1
+  rh = reset --hard HEAD~1
+  lo = log -p
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+
+[merge]
+	tool = opendiff
+
+[fetch]
+	prune = true
+
+[core]
+	editor = subl -n -w
