@@ -116,7 +116,7 @@ Host github.com
   Port 443
 ```
 
-Datei schließen und speichern.
+Datei schließen (Ctrl + X) und speichern (Y).
 
 Jetzt kann der SSH-Schlüssel hinzugefügt werden:
 
@@ -152,7 +152,7 @@ Host github.com
   Port 443
 ```
 
-Datei schließen und speichern.
+Datei schließen (Strg + X) und speichern (Y).
 
 ## Github & SSH
 
