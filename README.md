@@ -220,7 +220,26 @@ Um statische Seiten über einen Webserver abzurufen, war es früher oft notwendi
 - **Node.js**: Modul http-server global installieren `npm install -g http-server` und mit `http-server` im gewünschten Verzeichnis starten
 - **Python**: Eingebauten Webserver in Python 3 mit `python3 -m http.server` oder in Python 2 mit `python -m SimpleHTTPServer` im gewünschten Verzeichnis starten
 
+Die meisten Webprojekte bringen mittlerweile einen eigenen Entwicklungsserver mit. Wir verwenden dafür [webpack-dev-server](https://webpack.js.org/configuration/dev-server/). Nach Installation der notwendigen Pakete mit `npm install` kann der Webserver mit `npm start` gestartet werden.
+
 ## Node.js
+Node.js ist eine JavaScript-Runtime für die Kommandozeile, welche auf Chromes V8-Engine aufbaut. Die einfachste Möglichkeit Node.js zu installieren besteht darin, das offizielle Installationsprogramm zu verwenden. Mac-Benutzer können Node.js auch über Homebrew installieren.
+
+Es empfiehlt sich die LTS-Version (*Long Term Support*) von Node.js herunterzuladen: <https://nodejs.org/en/download/>
+
+Nach der Installation sollte `node` und der Node.js-Paketmanager `npm` auf der Kommandozeile verfügbar sein:
+
+```shell
+node --version
+v10.16.1
+```
+
+```shell
+npm --version
+v6.9.0
+```
+
+Typischerweise haben Node.js-Projekte ein Manifest `package.json`, in dem alle in einem Projekt verwendeten Abhängigkeiten und einige Metadaten angegeben sind. Über Konflikte bei installierten Paketen muss man sich mit Node.js eigentlich keine Sorgen machen. Pakete werden mit `npm install` immer im aktuellen Verzeichnis unter `node_modules` abgelegt. Möchte man ein Paket, wie den Webserver `http-server`, global installieren, tut man dies mit `npm install -g http-server`.
 
 ## Python
 
