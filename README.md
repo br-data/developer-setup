@@ -1,6 +1,6 @@
 # Developer Setup
 
-Um gemeinsam an einem Software- oder Web-Projekt arbeiten zu können, braucht es ein paar Entwicklerwerkzeuge und Systemeinstellungen. Diese Anleitung hilft dabei Git, SSH, Node.js, Python und Visual Studio Code auf einem neuen Computer (Windows oder Mac) zu installieren und konfigurieren.
+Um gemeinsam an einem Software- oder Webprojekt arbeiten zu können, braucht es ein paar Entwicklerwerkzeuge und Systemeinstellungen. Diese Anleitung hilft dabei Git, SSH, Node.js, Python und Visual Studio Code auf einem neuen Computer (Windows oder Mac) zu installieren und konfigurieren.
 
 ## Kommandozeile und Git-Installation
 
@@ -213,6 +213,13 @@ Es gibt in Visual Studio Code vor allem eine wichtige Tastenkombination: `Strg` 
 
 Weitere gute Code-Editoren sind [Sublime Text](https://www.sublimetext.com/), [Notepad++](https://notepad-plus-plus.org/), [Atom](https://atom.io/), [Coda](https://panic.com/coda/) und [Brackets](http://brackets.io/).
 
+## Webserver
+Um statische Seiten über einen Webserver abzurufen, war es früher oft notwendig Apache oder das darauf aufbauende XAMPP zu installieren. Die Konfiguration dieser Software ist aufwendig und zudem stellt ein ständig laufender Webserver auf dem eigenen Rechner ein nicht unerhebliches Sicherheitsrisiko dar. Mittlerweile gibt es einfacher Lösungen für kleine Entwicklungsserver, die sich bei Bedarf schnell starten und stoppen lassen:
+
+- **Visual Studio Code**: Extension [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) installieren und aus der Statusleiste (unten) starten
+- **Node.js**: Modul http-server global installieren `npm install -g http-server` und mit `http-server` im gewünschten Verzeichnis starten
+- **Python**: Eingebauten Webserver in Python 3 mit `python3 -m http.server` oder in Python 2 mit `python -m SimpleHTTPServer` im gewünschten Verzeichnis starten
+
 ## Node.js
 
 ## Python
@@ -234,7 +241,7 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 - BR Data: [Dokumenten-Workflow mit Tika und Tesseract](https://github.com/br-data/elasticsearch-document-workshop)
 - BR Wiki: [https://42.br.de](https://42.br.de)
 
-- [Einführung in die Web-Entwicklung mit HTML, CSS und JavaScript](https://github.com/stekhn/programming-workshop)
+- [Einführung in die Webentwicklung mit HTML, CSS und JavaScript](https://github.com/stekhn/programming-workshop)
 - [Interaktive Grafiken mit D3](https://github.com/stekhn/d3-workshop)
 - [Karten für's Web mit Leaflet](https://github.com/stekhn/leaflet-workshop)
 
