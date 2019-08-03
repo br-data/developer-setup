@@ -176,6 +176,43 @@ Auf Github kann der Key auf folgender Seite hinterlegt werden: <https://github.c
 
 ## Visual Studio Code
 
+Visual Studio Code ist ein kostenloser Quelltext-Editor, der viele Programmiersprachen unterstützt und mit Plugins erweitert werden kann.
+
+Der Editor für Windows, MacOS oder Linux kann hier heruntergeladen werden: <https://code.visualstudio.com/download>
+
+Visual Studio Code kann auch auf Windows-Computern ohne Administratorrechte verwendet werden ([Portable-Modus](https://code.visualstudio.com/docs/editor/portable)):
+
+1. Visual Studio Code als Zip-Datei herunterladen
+2. Zip-Datei in einen Ordner `VSCode` entpacken
+3. Im Ordner `VSCode` einen neuen Ordner `data` erstellen
+4. `Code.exe` ausführen, um den Editor zu starten
+
+### Plugins
+
+Um den Visual Studio Code optimal nutzen zu können, sollten man noch ein paar Plugins (*extensions*) installieren. Sogenannten Linter helfen dabei, Fehler im Code frühzeitig zu erkennen. Das erspart viel Ärger und Arbeit bei der Fehlersuche.
+
+- **ESLint**: Linter für JavaScript-Code
+- **HTMLHint**: Linter für HTML
+- **Python**: Linter für Python
+- **markdownlint**: Linter für Markdown
+
+Linter sind für alle gängige Programmiersprachen verfügbar. Öffnet man eine Datei in einer Programmier- oder Skriptsprache, für die noch kein Linter installiert ist, bietet VS Code automatisch an den passenden Linter zu installieren.
+
+Folgende Plugins sind ebenfalls nützlich:
+
+- **EditorConfig**: Editor-Einstellungen aus `.editorconfig` laden
+- **Code Spell Checker**: Rechtschreibkorrektur für Code und Dokumentation
+- **Prettier**: Code richtig formatieren und einrücken (HTML, CSS, JavaScript)
+- **Visual Studio IntelliCode**: Intelligente Autovervollständigung für Code
+- **Live Server**: Einfachen Entwicklungsserver starten
+- **Sublime Text Keymap**: Tastenkombinationen wie in Sublime Text
+
+### Einsteiger-Tipps
+
+Es gibt in Visual Studio Code vor allem eine wichtige Tastenkombination: `Strg` + `Shift` + `P` öffnet das Befehlsmenü, über das man schnell häufig genutzte Funktionen aufrufen kann. So muss man sich keine hundert Tastenkombinationen merken, sondern kann einfach eingeben, was man gerne tun möchte. Mit  `Strg` + `P` kann man schnell nach Dateien innerhalb eines Projekts suchen.
+
+Weitere gute Code-Editoren sind [Sublime Text](https://www.sublimetext.com/), [Notepad++](https://notepad-plus-plus.org/), [Atom](https://atom.io/), [Coda](https://panic.com/coda/) und [Brackets](http://brackets.io/).
+
 ## Node.js
 
 ## Python
@@ -189,6 +226,18 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 ## ZSH
 
 ## PATH-Variable
+
+## Weitere Links
+
+- BR Data: [How to BR Data (Onboarding)]()
+- BR Data: [Open Source Guidelines](https://github.com/br-data/open-source-guidelines)
+- BR Data: [Dokumenten-Workflow mit Tika und Tesseract](https://github.com/br-data/elasticsearch-document-workshop)
+- BR Wiki: [https://42.br.de](https://42.br.de)
+
+- [Einführung in die Web-Entwicklung mit HTML, CSS und JavaScript](https://github.com/stekhn/programming-workshop)
+- [Interaktive Grafiken mit D3](https://github.com/stekhn/d3-workshop)
+- [Karten für's Web mit Leaflet](https://github.com/stekhn/leaflet-workshop)
+
 
 ## Inspiration
 
