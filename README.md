@@ -1,6 +1,19 @@
 # Developer Setup
 
-Um gemeinsam an einem Software- oder Webprojekt arbeiten zu können, braucht es ein paar Entwicklerwerkzeuge und Systemeinstellungen. Diese Anleitung hilft dabei Git, SSH, Node.js, Python und Visual Studio Code auf einem neuen Computer (Windows oder Mac) zu installieren und konfigurieren.
+Um gemeinsam an Software- oder Webprojekten arbeiten zu können, braucht es ein paar Entwicklerwerkzeuge, Systemeinstellungen und Konventionen. Diese Anleitung hilft dabei Git, SSH, Node.js, Python und Visual Studio Code auf einem neuen Computer (Windows oder Mac) zu installieren und konfigurieren.
+
+## Inhaltsverzeichnis
+
+- [Kommandozeile und Git-Installation](#user-content-kommandozeile-und-git-installation)
+- [Git einrichten](#user-content-git-einrichten)
+- [SSH-Schlüssel erstellen](#user-content-ssh-schlüssel-erstellen)
+- [Github und SSH](#user-content-github-und-ssh)
+- [Visual Studio Code](#user-content-visual-studio-code)
+- [Webserver](#user-content-webserver)
+- [Node.js](#user-content-nodejs)
+- [Python](#user-content-python)
+- [Homebrew](#user-content-homebrew)
+- [ZSH](#user-content-zsh)
 
 ## Kommandozeile und Git-Installation
 
@@ -53,7 +66,7 @@ git config --global user.name "Vorname Nachname"
 E-Mail-Adresse angeben:
 
 ```shell
-git config --global user.email "vorname.nachname@br.de"
+git config --global user.email "vorname.nachname@example.com"
 ```
 
 Standard-Editor festlegen, um zum Beispiel die Commit-Message bei einem Merge einfach verändern zu können:
@@ -64,7 +77,9 @@ git config --global core.editor nano
 
 Git speichert die Git-Konfiguration unter `~/.gitconfig`. `~` steht für das Home-Verzeichnis, welche in Windows meistens unter `C:\Users\benutzername` liegt, in MacOS unter `/Users/benutzername`.
 
-In der `.gitconfig` können außerdem noch bestimmte Abkürzungen für Git-Befehle und weitere Einstellungen vorgenommen werden. Eine Muster `.gitignore` findet sich hier.
+In der `.gitconfig` können außerdem noch bestimmte Abkürzungen für Git-Befehle und weitere Einstellungen vorgenommen werden.
+
+💡 Ein Vorlage für die `.gitignore` gibt es [hier](./.gitconfig).
 
 ## SSH-Schlüssel erstellen
 
@@ -73,7 +88,7 @@ Das Erstellen einen neues SSH-Schlüsselpaars auf der Kommandozeile ist unter Ma
 Einen neuen Schlüssel erstellen:
 
 ```shell
-ssh-keygen -t rsa -b 4096 -C "vorname.nachname@br.de"
+ssh-keygen -t rsa -b 4096 -C "vorname.nachname@example.com"
 ```
 
 Die folgende Abfrage einfach mit Eingabe bestätigen, es sei denn man hat schon ein Schlüsselpaar erstellt und möchte dem neuen Schlüsselpaar einen neuen Namen zuweisen.
@@ -132,6 +147,8 @@ Jetzt kann der SSH-Schlüssel hinzugefügt werden:
 ssh-add -K ~/.ssh/id_rsa
 ```
 
+💡 Ein Beispiel für eine `.ssh/config` findet sich [hier](./.ssh/config).
+
 ### Windows
 
 SSH-Agent im Hintergrund starten:
@@ -162,7 +179,7 @@ Host github.com
 
 Datei schließen (`Strg` + `X`) und speichern (`Y`).
 
-## Github & SSH
+## Github und SSH
 
 Um auf Repository von Github zugreifen (klonen, pushen, ...) zu können, muss der öffentliche SSH-Schlüssel dort hinterlegt werden. Dazu muss zuerst der Inhalt des Schlüssels kopiert werden:
 
@@ -170,9 +187,9 @@ Um auf Repository von Github zugreifen (klonen, pushen, ...) zu können, muss de
 cat ~/.ssh/id_rsa.pub
 ```
 
-Diese Ausgabe dieses Befehls von `ssh-rsa ...` bis `... vorname.name@br.de` kopieren. Unter Windows geht das in Git Bash mit `Strg` + `Einf`, unter MacOS mit `Cmd` + `C`.
+Diese Ausgabe dieses Befehls von `ssh-rsa ...` bis `... vorname.name@example.com` kopieren. Unter Windows geht das in Git Bash mit `Strg` + `Einf`, unter MacOS mit `Cmd` + `C`.
 
-Auf Github kann der Key auf folgender Seite hinterlegt werden: <https://github.com/settings/keys>. Der Link funktioniert natürlich nur, wenn man sich vorher bei Github angemeldet hat.
+Auf Github kann der Key auf unter *Settings > SSH and GPG keys* hinterlegt werden: <https://github.com/settings/keys>. Der Link funktioniert nur, wenn man sich vorher bei Github angemeldet hat.
 
 ## Visual Studio Code
 
@@ -235,7 +252,7 @@ Die meisten Webprojekte bringen mittlerweile einen eigenen Entwicklungsserver mi
 
 ## Node.js
 
-Node.js ist eine JavaScript-Runtime für die Kommandozeile. Die einfachste Möglichkeit Node.js zu installieren besteht darin, das offizielle Installationsprogramm zu verwenden. Mac-Benutzer können Node.js auch über Homebrew installieren.
+Node.js ist eine JavaScript-Runtime für die Kommandozeile. Die einfachste Möglichkeit Node.js zu installieren besteht darin, das offizielle Installationsprogramm zu verwenden. Mac-Benutzer können Node.js auch über [Homebrew](#user-content-homebrew) installieren.
 
 Es empfiehlt sich die LTS-Version (*Long Term Support*) von Node.js herunterzuladen: <https://nodejs.org/en/download/>
 
@@ -346,25 +363,19 @@ ZSH ist eine alternative Shell für Mac- und Linux-Systeme. Gerade in der Verbin
 
 Eine ausführliche Installationsanleitung für verschiedene Systeme findet sich hier: <https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH>
 
-Oh my ZSH! kann unter MacOS entweder mit einem Shellscript ...
-
-```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-```
-
-... oder mit Homebrew installiert werden:
+Oh my ZSH! kann unter MacOS mit [Homebrew](#user-content-homebrew) installiert werden:
 
 ```bash
 brew install zsh zsh-completions
 ```
 
-Unter MacOS solle man ZSH noch als Standard-Shell festlegen:
+Danach kann man ZSH als Standard-Shell festlegen:
 
 ```bash
 chsh -s /bin/zsh
 ```
 
-Um Oh my ZSH! zu konfigurieren muss man einen `.zshrc`-Konfigurationsdatei im Homeverzeichnis des Benutzers anlegen oder die bereits bestehende Konfigurationsdatei bearbeiten:
+Um Oh my ZSH! zu konfigurieren, muss man einen `.zshrc`-Konfigurationsdatei im Homeverzeichnis des Benutzers anlegen oder die bereits bestehende Konfigurationsdatei bearbeiten:
 
 ```shell
 # Set name of the theme from ~/.oh-my-zsh/themes/
@@ -377,9 +388,9 @@ plugins=(osx vscode git git-extras brew node npm pip)
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
 ```
 
-Ein Beispiel für eine `.zshrc`-Datei gibt es [hier](./zshrc).
-
 Im Oh my ZSH!-Repo auf Github gibt es eine Übersicht über die verfügbaren [Themes](https://github.com/robbyrussell/oh-my-zsh/wiki/Themes) und [Plugins](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins).
+
+💡 Ein Beispiel für eine `.zshrc`-Datei gibt es [hier](./.zshrc).
 
 ## Weitere Links
 
@@ -398,3 +409,4 @@ Im Oh my ZSH!-Repo auf Github gibt es eine Übersicht über die verfügbaren [Th
 
 - Ordnerstruktur für Entwicklung erklären
 - Hilfe für PATH-Variablen
+- Anleitung für das Google Cloud SDK
