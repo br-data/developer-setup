@@ -214,6 +214,7 @@ Es gibt in Visual Studio Code vor allem eine wichtige Tastenkombination: `Strg` 
 Weitere gute Code-Editoren sind [Sublime Text](https://www.sublimetext.com/), [Notepad++](https://notepad-plus-plus.org/), [Atom](https://atom.io/), [Coda](https://panic.com/coda/) und [Brackets](http://brackets.io/).
 
 ## Webserver
+
 Um statische Seiten über einen Webserver abzurufen, war es früher oft notwendig Apache oder das darauf aufbauende XAMPP zu installieren. Die Konfiguration dieser Software ist aufwendig und zudem stellt ein ständig laufender Webserver auf dem eigenen Rechner ein nicht unerhebliches Sicherheitsrisiko dar. Mittlerweile gibt es einfacher Lösungen für kleine Entwicklungsserver, die sich bei Bedarf schnell starten und stoppen lassen:
 
 - **Visual Studio Code**: Extension [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) installieren und aus der Statusleiste (unten) starten
@@ -223,7 +224,8 @@ Um statische Seiten über einen Webserver abzurufen, war es früher oft notwendi
 Die meisten Webprojekte bringen mittlerweile einen eigenen Entwicklungsserver mit. Wir verwenden dafür [webpack-dev-server](https://webpack.js.org/configuration/dev-server/). Nach Installation der notwendigen Pakete mit `npm install` kann der Webserver mit `npm start` gestartet werden.
 
 ## Node.js
-Node.js ist eine JavaScript-Runtime für die Kommandozeile, welche auf Chromes V8-Engine aufbaut. Die einfachste Möglichkeit Node.js zu installieren besteht darin, das offizielle Installationsprogramm zu verwenden. Mac-Benutzer können Node.js auch über Homebrew installieren.
+
+Node.js ist eine JavaScript-Runtime für die Kommandozeile. Die einfachste Möglichkeit Node.js zu installieren besteht darin, das offizielle Installationsprogramm zu verwenden. Mac-Benutzer können Node.js auch über Homebrew installieren.
 
 Es empfiehlt sich die LTS-Version (*Long Term Support*) von Node.js herunterzuladen: <https://nodejs.org/en/download/>
 
@@ -242,6 +244,31 @@ v6.9.0
 Typischerweise haben Node.js-Projekte ein Manifest `package.json`, in dem alle in einem Projekt verwendeten Abhängigkeiten und einige Metadaten angegeben sind. Über Konflikte bei installierten Paketen muss man sich mit Node.js eigentlich keine Sorgen machen. Pakete werden mit `npm install` immer im aktuellen Verzeichnis unter `node_modules` abgelegt. Möchte man ein Paket, wie den Webserver `http-server`, global installieren, tut man dies mit `npm install -g http-server`.
 
 ## Python
+
+Python ist ein einfach zu erlernende und universell einsetzbare Programmiersprache. Ein gute Anleitung, wie man Python auf verschieden Betriebssystemen installieren kann, findet sich hier: <https://cloud.google.com/python/setup?hl=de>
+
+```shell
+cd your-project
+virtualenv --python python3 env
+```
+
+```shell
+.\env\Scripts\activate
+```
+
+```shell
+pip install beautifulsoup4
+```
+
+```shell
+pip install -r requirements.txt
+```
+
+```shell
+deactivate
+```
+
+https://virtualenv.pypa.io/en/stable/
 
 ## Homebrew
 
@@ -263,7 +290,6 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 - [Einführung in die Webentwicklung mit HTML, CSS und JavaScript](https://github.com/stekhn/programming-workshop)
 - [Interaktive Grafiken mit D3](https://github.com/stekhn/d3-workshop)
 - [Karten für's Web mit Leaflet](https://github.com/stekhn/leaflet-workshop)
-
 
 ## Inspiration
 
