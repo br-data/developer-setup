@@ -302,9 +302,33 @@ deactivate
 
 ## Homebrew
 
+Homebrew ist ein praktischer Paketmanager für MacOS, der einen ähnlichen Funktionsumfang bietet wie die von Linux-Systemen bekannten Paketmanager YUM, RPM oder APT.
+
+Homebrew wird über eine Ruby-Skript installiert:
+
 ```shell
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
+
+Um zu testen, ob die eigene Homebrew-Installation (noch) funktioniert, gibt es ein eingebautes Werkzeug zur Selbstdiagnose:
+
+```shell
+brew doctor
+```
+
+Neue Pakete können einfach mit dem Befehl `install` installiert werden:
+
+```shell
+brew install postgresql
+```
+
+Homebrew hat eine Funktion, um Dienste, wie Datenbanken, zu starten:
+
+```shell
+brew services start postgresql
+```
+
+Eine grafische Lösung, um mit Hombrew installierte Dienste zu starten oder stoppen ist [launchrocket](https://github.com/jimbojsb/launchrocket), welches in als PrefPane in den Systemeinstellungen installiert wird.
 
 ## ZSH
 
