@@ -247,28 +247,58 @@ Typischerweise haben Node.js-Projekte ein Manifest `package.json`, in dem alle i
 
 Python ist ein einfach zu erlernende und universell einsetzbare Programmiersprache. Ein gute Anleitung, wie man Python auf verschieden Betriebssystemen installieren kann, findet sich hier: <https://cloud.google.com/python/setup?hl=de>
 
-```shell
-cd your-project
-virtualenv --python python3 env
-```
+Da die Verwaltung von Abhängigkeiten und Bibliotheken in Python eher schwierig ist, und gerade bei Anfänger oft zu Problemen führt, empfiehlt es sich für jedes Python-Projekt eine virtuelle Umgebung [venv](https://docs.python.org/3/library/venv.html) einzurichten. Dadurch werden die Abhängigkeiten für jedes Projekt einzeln installiert und Versionskonflikte vermieden.
+
+Projekt-Ordner `project` anlegen:
 
 ```shell
-.\env\Scripts\activate
+mkdir project && cd project
 ```
+
+Neue virtuelle Umgebung mit dem Namen `env` erstellen:
+
+```shell
+python3 -m venv env
+```
+
+In Python 2 müsste man zuerst [virtualenv](https://virtualenv.pypa.io/en/stable/) installieren, um eine neue virtuelle Umgebung mit `virtualenv env` anzulegen.
+
+Virtuelle Umgebung unter **Windows** aktivieren:
+
+```powershell
+env\Scripts\activate.bat
+```
+
+Virtuelle Umgebung unter **MacOS** aktivieren:
+
+```shell
+source ./env/bin/activate
+```
+
+Neue Pakete und Bibliotheken können nun wie gewohnt mit dem Python-Paketmanager *pip* installiert werden:
 
 ```shell
 pip install beautifulsoup4
 ```
 
+Anstatt Pakete einzeln zu installieren, kann man alle Abhängigkeiten auch in einer Art Manifest `requirements.txt` deklarieren. Hier ein einfaches Beispiel:
+
+```plaintext
+requests==2.18.4
+google-auth==1.1.0
+```
+
+Nun kann man alle in der `requirements.txt` angegebenen Abhängigkeiten nacheinander installieren:
+
 ```shell
 pip install -r requirements.txt
 ```
 
+Braucht man die die virtuelle Umgebung nicht mehr, kann man sie einfach deaktivieren:
+
 ```shell
 deactivate
 ```
-
-https://virtualenv.pypa.io/en/stable/
 
 ## Homebrew
 
@@ -281,17 +311,17 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 ## PATH-Variable
 
 ## Weitere Links
-
-- BR Data: [How to BR Data (Onboarding)]()
-- BR Data: [Open Source Guidelines](https://github.com/br-data/open-source-guidelines)
-- BR Data: [Dokumenten-Workflow mit Tika und Tesseract](https://github.com/br-data/elasticsearch-document-workshop)
-- BR Wiki: [https://42.br.de](https://42.br.de)
+- [Open Source Guidelines](https://github.com/br-data/open-source-guidelines)
+- [Dokumenten-Workflow mit Tika und Tesseract](https://github.com/br-data/elasticsearch-document-workshop)
+- [https://42.br.de](https://42.br.de)
 
 - [Einführung in die Webentwicklung mit HTML, CSS und JavaScript](https://github.com/stekhn/programming-workshop)
 - [Interaktive Grafiken mit D3](https://github.com/stekhn/d3-workshop)
 - [Karten für's Web mit Leaflet](https://github.com/stekhn/leaflet-workshop)
 
 ## Inspiration
-
 - New York Times: [Set Up Your Mac Like an Interactive News Developer](https://open.nytimes.com/set-up-your-mac-like-an-interactive-news-developer-bb8d2c4097e5)
 - NPR: [How to Setup Your Mac to Develop News Applications Like We Do](https://blog.apps.npr.org/2013/06/06/how-to-setup-a-developers-environment.html)
+
+## Todo
+- Ordnerstruktur für Entwicklung erklären
