@@ -207,9 +207,19 @@ Folgende Plugins sind ebenfalls nützlich:
 - **Live Server**: Einfachen Entwicklungsserver starten
 - **Sublime Text Keymap**: Tastenkombinationen wie in Sublime Text
 
+### Kommandozeilenintegration
+
+Damit Visual Studio Code von der Kommandozeile mit dem Befehl `code` gestartet werden kann, muss zuerst die Kommandozeilenerweiterung installiert werden. Die geht in Visual Studio Code über das Befehlsmenü `Shift` + `Shift` + `P`. Dort einfach nach *Shell Command: Install 'code' command in PATH* suchen und mit Eingabe bestätigen.
+
+Alternativ können Mac-Benutzer auch die `$PATH`-Variable in ihrer Shell-Konfiguration unter `~/.bash_profile` (bash) oder `~/.zshrc` (ZSH) anpassen:
+
+```shell
+export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+```
+
 ### Einsteiger-Tipps
 
-Es gibt in Visual Studio Code vor allem eine wichtige Tastenkombination: `Strg` + `Shift` + `P` öffnet das Befehlsmenü, über das man schnell häufig genutzte Funktionen aufrufen kann. So muss man sich keine hundert Tastenkombinationen merken, sondern kann einfach eingeben, was man gerne tun möchte. Mit  `Strg` + `P` kann man schnell nach Dateien innerhalb eines Projekts suchen.
+Es gibt in Visual Studio Code vor allem eine wichtige Tastenkombination: `Shift` + `Shift` + `P` öffnet das Befehlsmenü, über das man schnell häufig genutzte Funktionen aufrufen kann. So muss man sich keine hundert Tastenkombinationen merken, sondern kann einfach eingeben, was man gerne tun möchte. Mit  `Strg` + `P` kann man schnell nach Dateien innerhalb eines Projekts suchen.
 
 Weitere gute Code-Editoren sind [Sublime Text](https://www.sublimetext.com/), [Notepad++](https://notepad-plus-plus.org/), [Atom](https://atom.io/), [Coda](https://panic.com/coda/) und [Brackets](http://brackets.io/).
 
@@ -247,7 +257,7 @@ Typischerweise haben Node.js-Projekte ein Manifest `package.json`, in dem alle i
 
 Python ist ein einfach zu erlernende und universell einsetzbare Programmiersprache. Ein gute Anleitung, wie man Python auf verschieden Betriebssystemen installieren kann, findet sich hier: <https://cloud.google.com/python/setup?hl=de>
 
-Da die Verwaltung von Abhängigkeiten und Bibliotheken in Python eher schwierig ist, und gerade bei Anfänger oft zu Problemen führt, empfiehlt es sich für jedes Python-Projekt eine virtuelle Umgebung [venv](https://docs.python.org/3/library/venv.html) einzurichten. Dadurch werden die Abhängigkeiten für jedes Projekt einzeln installiert und Versionskonflikte vermieden.
+Da die Verwaltung von Abhängigkeiten und Bibliotheken in Python [eher schwierig](https://xkcd.com/1987/) ist, und gerade bei Anfänger oft zu Problemen führt, empfiehlt es sich für jedes Python-Projekt eine virtuelle Umgebung [venv](https://docs.python.org/3/library/venv.html) einzurichten. Dadurch werden die Abhängigkeiten für jedes Projekt einzeln installiert und Versionskonflikte vermieden.
 
 Projekt-Ordner `project` anlegen:
 
@@ -332,20 +342,59 @@ Eine grafische Lösung, um mit Hombrew installierte Dienste zu starten oder stop
 
 ## ZSH
 
-## PATH-Variable
+ZSH ist eine alternative Shell für Mac- und Linux-Systeme. Gerade in der Verbindungen mit [Oh my ZSH!](https://ohmyz.sh/) ist ZSH sehr mächtig und gut mit Plugins erweiterbar.
+
+Eine ausführliche Installationsanleitung für verschiedene Systeme findet sich hier: <https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH>
+
+Oh my ZSH! kann unter MacOS entweder mit einem Shellscript ...
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+... oder mit Homebrew installiert werden:
+
+```bash
+brew install zsh zsh-completions
+```
+
+Unter MacOS solle man ZSH noch als Standard-Shell festlegen:
+
+```bash
+chsh -s /bin/zsh
+```
+
+Um Oh my ZSH! zu konfigurieren muss man einen `.zshrc`-Konfigurationsdatei im Homeverzeichnis des Benutzers anlegen oder die bereits bestehende Konfigurationsdatei bearbeiten:
+
+```shell
+# Set name of the theme from ~/.oh-my-zsh/themes/
+ZSH_THEME="ys"
+
+# Load oh-my-zsh plugins from ~/.oh-my-zsh/plugins/
+plugins=(osx vscode git git-extras brew node npm pip)
+
+# Initialize oh-my-zsh
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
+```
+
+Ein Beispiel für eine `.zshrc`-Datei gibt es [hier](./zshrc).
+
+Im Oh my ZSH!-Repo auf Github gibt es eine Übersicht über die verfügbaren [Themes](https://github.com/robbyrussell/oh-my-zsh/wiki/Themes) und [Plugins](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins).
 
 ## Weitere Links
+
 - [Open Source Guidelines](https://github.com/br-data/open-source-guidelines)
 - [Dokumenten-Workflow mit Tika und Tesseract](https://github.com/br-data/elasticsearch-document-workshop)
-- [https://42.br.de](https://42.br.de)
-
 - [Einführung in die Webentwicklung mit HTML, CSS und JavaScript](https://github.com/stekhn/programming-workshop)
 - [Interaktive Grafiken mit D3](https://github.com/stekhn/d3-workshop)
 - [Karten für's Web mit Leaflet](https://github.com/stekhn/leaflet-workshop)
 
 ## Inspiration
+
 - New York Times: [Set Up Your Mac Like an Interactive News Developer](https://open.nytimes.com/set-up-your-mac-like-an-interactive-news-developer-bb8d2c4097e5)
 - NPR: [How to Setup Your Mac to Develop News Applications Like We Do](https://blog.apps.npr.org/2013/06/06/how-to-setup-a-developers-environment.html)
 
 ## Todo
+
 - Ordnerstruktur für Entwicklung erklären
+- Hilfe für PATH-Variablen
