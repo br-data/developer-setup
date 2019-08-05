@@ -1,6 +1,6 @@
 [user]
-  name = Steffen Kühne
-  email = stekhn@gmail.com
+  name = Vorname Name
+  email = vorname.name@example.com
 
 [alias]
   pu = pull
