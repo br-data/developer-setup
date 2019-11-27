@@ -29,10 +29,10 @@
   status = auto
 
 [merge]
-	tool = opendiff
+  tool = opendiff
 
 [fetch]
-	prune = true
+  prune = true
 
 [core]
-	editor = subl -n -w
+  editor = code -w
