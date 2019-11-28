@@ -213,7 +213,7 @@ Um den Visual Studio Code optimal nutzen zu können, sollten man noch ein paar P
 - **Python**: Linter für Python
 - **markdownlint**: Linter für Markdown
 
-Linter sind für alle gängige Programmiersprachen verfügbar. Öffnet man eine Datei in einer Programmier- oder Skriptsprache, für die noch kein Linter installiert ist, bietet VS Code automatisch an den passenden Linter zu installieren.
+Linter sind für alle gängige Programmiersprachen verfügbar. Öffnet man eine Datei in einer Programmier- oder Skriptsprache, für die noch kein Linter installiert ist, bietet VS Code automatisch an, den passenden Linter zu installieren.
 
 Folgende Plugins sind ebenfalls nützlich:
 
@@ -242,7 +242,7 @@ Weitere gute Code-Editoren sind [Sublime Text](https://www.sublimetext.com/), [N
 
 ## Webserver
 
-Um statische Seiten über einen Webserver abzurufen, war es früher oft notwendig Apache oder das darauf aufbauende XAMPP zu installieren. Die Konfiguration dieser Software ist aufwendig und zudem stellt ein ständig laufender Webserver auf dem eigenen Rechner ein nicht unerhebliches Sicherheitsrisiko dar. Mittlerweile gibt es einfacher Lösungen für kleine Entwicklungsserver, die sich bei Bedarf schnell starten und stoppen lassen:
+Um statische Seiten über einen Webserver abzurufen, war es früher oft notwendig Apache oder das darauf aufbauende XAMPP zu installieren. Die Konfiguration dieser Software ist aufwendig und zudem stellt ein ständig laufender Webserver auf dem eigenen Rechner ein nicht unerhebliches Sicherheitsrisiko dar. Mittlerweile gibt verschiedene Lösungen für kleine Entwicklungsserver, die sich bei Bedarf schnell starten und stoppen lassen:
 
 - **Visual Studio Code**: Extension [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) installieren und aus der Statusleiste (unten) starten
 - **Node.js**: Modul http-server global installieren `npm install -g http-server` und mit `http-server` im gewünschten Verzeichnis starten
@@ -335,6 +335,12 @@ Homebrew wird über eine Ruby-Skript installiert:
 
 ```shell
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Wenn man Homebrew nur für den eigenen Benutzer einrichtet, muss man in den meisten Fällen noch die Verzeichnisberechtigungen anpassen. So kann man dann in Zukunft auch Pakete ohne Administratorrechte oder `sudo` installieren (Quelle: [Stackoverflow](https://stackoverflow.com/a/46844441/2037629)):
+
+```shell
+sudo chown -R $(whoami) $(brew --prefix)/*
 ```
 
 Um zu testen, ob die eigene Homebrew-Installation (noch) funktioniert, gibt es ein eingebautes Werkzeug zur Selbstdiagnose:
