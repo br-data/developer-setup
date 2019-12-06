@@ -14,6 +14,7 @@ Um gemeinsam an Software- oder Webprojekten arbeiten zu können, braucht es ein 
 - [Python](#user-content-python)
 - [Homebrew](#user-content-homebrew)
 - [ZSH](#user-content-zsh)
+- [Skripte](#user-content-skripte)
 
 ## Kommandozeile und Git-Installation
 
@@ -397,6 +398,25 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 Im Oh my ZSH!-Repo auf Github gibt es eine Übersicht über die verfügbaren [Themes](https://github.com/robbyrussell/oh-my-zsh/wiki/Themes) und [Plugins](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins).
 
 💡 Ein Beispiel für eine `.zshrc`-Datei gibt es [hier](./.zshrc).
+
+## Skripte
+
+Unter Mac OS X lässt sich die Installation von Werkzeugen und Apps, so wie die Erstkonfiguration des Betriebssystems relativ einfach mit Bash-Skripten automatisieren. Hier zwei Skripte, die als Grundlage für eine eigenes Setup-Skript dienen können
+
+- Werkzeuge und Apps installieren: [install_all.sh](./install_all.sh)
+- Konfiguration anpassen: [configure_all.sh](./configure_all.sh)
+
+Um ein Skript auszuführen, muss man es erst mit den entsprechenden Rechten ausstatten:
+
+```shell
+chmod +x install_all.sh
+```
+
+Das Skript wird dann mit folgendem Befehl gestartet:
+
+```shell
+./install_all.sh
+```
 
 ## Weitere Links
 
