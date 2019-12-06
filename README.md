@@ -403,19 +403,19 @@ Im Oh my ZSH!-Repo auf Github gibt es eine Übersicht über die verfügbaren [Th
 
 Unter Mac OS X lässt sich die Installation von Werkzeugen und Apps, so wie die Erstkonfiguration des Betriebssystems relativ einfach mit Bash-Skripten automatisieren. Hier zwei Skripte, die als Grundlage für eine eigenes Setup-Skript dienen können
 
-- Werkzeuge und Apps installieren: [install_all.sh](./install_all.sh)
-- Konfiguration anpassen: [configure_all.sh](./configure_all.sh)
+- Werkzeuge und Apps installieren: [install-all.sh](./install-all.sh)
+- Konfiguration anpassen: [configure-all.sh](./configure-all.sh)
 
 Um ein Skript auszuführen, muss man es erst mit den entsprechenden Rechten ausstatten:
 
 ```shell
-chmod +x install_all.sh
+chmod +x install-all.sh
 ```
 
 Das Skript wird dann mit folgendem Befehl gestartet:
 
 ```shell
-./install_all.sh
+./install-all.sh
 ```
 
 ## Weitere Links
