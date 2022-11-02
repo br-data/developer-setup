@@ -37,8 +37,9 @@ fi
 echo "Checking Homebrew installation"
 brew doctor
 
-echo "Setting up Homebrew permissions for local user"
-sudo chown -R $(whoami) $(brew --prefix)/*
+# Use with caution! This should not be necessary on most systems 
+# echo "Setting up Homebrew permissions for local user"
+# sudo chown -R $(whoami) $(brew --prefix)/*
 
 # Continue on error
 set +e
@@ -62,7 +63,7 @@ tools=(
   geoip
   jq
   xsv
-  node
+  node@16
   r
   python
   elasticsearch
