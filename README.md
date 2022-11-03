@@ -115,12 +115,6 @@ Als letzten Schritt muss der SSH-Schlüssel noch dem sogenannten *ssh-agent* hin
 
 ### MacOS
 
-SSH-Agent im Hintergrund starten:
-
-```shell
-eval "$(ssh-agent -s)"
-```
-
 Damit der Schlüssel zukünftig automatisch geladen und das Passwort im MacOS-Schlüsselbund (Keychain) gespeichert wird, muss die SSH-Konfiguration `~/.ssh/config` angepasst werden. Außerdem geben wir einen alternativen SSH-Port für Github an, da der Standard-Port 22 in Unternehmensnetzwerken oftmals geblockt wird. Gibt es die Konfigurationsdatei noch nicht, sollte sie neu angelegen werden.
 
 ```shell
@@ -145,7 +139,15 @@ Datei schließen (`Ctrl` + `X`) und speichern (`Y`).
 Jetzt kann der SSH-Schlüssel hinzugefügt werden:
 
 ```shell
-ssh-add -K ~/.ssh/id_rsa
+ssh-add --apple-use-keychain ~/.ssh/id_rsa
+```
+
+Lässt sich der SSH-Schlüssel nicht hinzufügen, kann das daran liegen, dass die Berechtigungen falsch gesetzt sind. So setzt man die richtigen Berechtigungen für die Dateien im SSH-Ordner:
+
+```shell
+sudo chmod 600 ~/.ssh/id_rsa
+sudo chmod 644 ~/.ssh/id_rsa.pub
+sudo chmod 644 ~/.ssh/config
 ```
 
 💡 Ein Beispiel für eine `.ssh/config` findet sich [hier](./.ssh/config).
@@ -261,12 +263,12 @@ Nach der Installation sollte `node` und der Node.js-Paketmanager `npm` auf der K
 
 ```shell
 node --version
-v10.16.1
+v16.18.0
 ```
 
 ```shell
 npm --version
-v6.9.0
+8.19.2
 ```
 
 Typischerweise haben Node.js-Projekte ein Manifest `package.json`, in dem alle in einem Projekt verwendeten Abhängigkeiten und einige Metadaten angegeben sind. Über Konflikte bei installierten Paketen muss man sich mit Node.js eigentlich keine Sorgen machen. Pakete werden mit `npm install` immer im aktuellen Verzeichnis unter `node_modules` abgelegt. Möchte man ein Paket, wie den Webserver `http-server`, global installieren, tut man dies mit `npm install -g http-server`.
@@ -335,13 +337,7 @@ Homebrew ist ein praktischer Paketmanager für MacOS, der einen ähnlichen Funkt
 Homebrew wird über eine Ruby-Skript installiert:
 
 ```shell
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
-
-Wenn man Homebrew nur für den eigenen Benutzer einrichtet, muss man in den meisten Fällen noch die Verzeichnisberechtigungen anpassen. So kann man dann in Zukunft auch Pakete ohne Administratorrechte oder `sudo` installieren (Quelle: [Stackoverflow](https://stackoverflow.com/a/46844441/2037629)):
-
-```shell
-sudo chown -R $(whoami) $(brew --prefix)/*
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 Um zu testen, ob die eigene Homebrew-Installation (noch) funktioniert, gibt es ein eingebautes Werkzeug zur Selbstdiagnose:
@@ -368,9 +364,7 @@ Eine grafische Lösung, um mit Hombrew installierte Dienste zu starten oder stop
 
 ZSH ist eine alternative Shell für Mac- und Linux-Systeme. Gerade in der Verbindungen mit [Oh my ZSH!](https://ohmyz.sh/) ist ZSH sehr mächtig und gut mit Plugins erweiterbar.
 
-Eine ausführliche Installationsanleitung für verschiedene Systeme findet sich hier: <https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH>
-
-Oh my ZSH! kann unter MacOS mit [Homebrew](#user-content-homebrew) installiert werden:
+Eine aktuelle Version von ZSH kann unter MacOS mit [Homebrew](#user-content-homebrew) installiert werden:
 
 ```bash
 brew install zsh zsh-completions
@@ -381,6 +375,14 @@ Danach kann man ZSH als Standard-Shell festlegen:
 ```bash
 chsh -s /bin/zsh
 ```
+
+Die Erweiterung Oh my ZSH! lässt sich mit einem Befehl installieren:
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+Eine ausführliche Installationsanleitung für verschiedene Systeme findet sich hier: <https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH>
 
 Um Oh my ZSH! zu konfigurieren, muss man einen `.zshrc`-Konfigurationsdatei im Homeverzeichnis des Benutzers anlegen oder die bereits bestehende Konfigurationsdatei bearbeiten:
 
@@ -417,6 +419,10 @@ Das Skript wird dann mit folgendem Befehl gestartet:
 ```shell
 ./install-all.sh
 ```
+
+**Wichtig:** Man sollte sich die Skripte auf jeden Fall vor den Ausführen noch mal anschauen und anpassen, welche Software und Einstellungen man wirklich braucht.
+
+💡 Läuft eines der Skripte wegen eines Fehlers nicht bis zu Ende, kann man es einfach erneut starten. Bereits installierte Software wird nicht noch mal installiert.
 
 ## Weitere Links
 
