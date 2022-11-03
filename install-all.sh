@@ -3,6 +3,8 @@
 # Install basic tools and apps on a fresh copy of Mac OS X
 # Reference: https://gist.github.com/millermedeiros/6615994
 
+echo "Installing software and tools for macOS"
+
 echo "Checking if user $(whoami) has admin rights. Please authenticate."
 
 if [ "$EUID" = 0 ]; then
@@ -31,15 +33,19 @@ if [[ $(command -v brew) = *brew* ]]; then
   fi
 else
   echo "Installing Homebrew"
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 echo "Checking Homebrew installation"
 brew doctor
 
 # Use with caution! This should not be necessary on most systems 
-# echo "Setting up Homebrew permissions for local user"
-# sudo chown -R $(whoami) $(brew --prefix)/*
+# if [[ $(brew --prefix) = *homebrew* ]]; then
+#   echo "Setting up Homebrew permissions for local user"
+#   sudo chown -R $(whoami) $(brew --prefix)/*
+# else
+#   echo "Can't set Homebrew permissions, because no prefix was found"
+# fi
 
 # Continue on error
 set +e
@@ -49,25 +55,21 @@ HOMEBREW_NO_AUTO_UPDATE=1
 
 echo "Installing missing tools with Homebrew"
 tools=(
-  git
-  git-extras
-  git-fresh
-  git-lfs
-  wget
-  tree
+  docker
   htop
-  parallel
-  watch
   imagemagick
-  nmap
-  geoip
   jq
-  xsv
+  nmap
   node@16
-  r
-  python
-  elasticsearch
+  parallel
   postgresql
+  python
+  r
+  tree
+  watch
+  wget
+  xsv
+  zsh
 )
 
 brew install ${tools[@]} || true
@@ -79,34 +81,29 @@ echo "Installing apps with Homebrew casks"
 APP_DIR="/Applications"
 
 apps=(
+  1password
+  citrix-workspace
   firefox
   google-chrome
-  1password
-  visual-studio-code
-  virtualbox
-  docker
-  rstudio
-  dash
-  charles
-  the-unarchiver
   google-cloud-sdk
-  cyberduck
-  owncloud
   imageoptim
-  skype-for-business
-  slack
-  keybase
+  insomnia
+  microsoft-teams
+  postico
+  rstudio
   signal
+  slack
+  visual-studio-code
   vlc
 )
 
-brew cask install --appdir=$APP_DIR ${apps[@]} || true
+brew install --cask --appdir=$APP_DIR ${apps[@]} || true
 
 echo "Cleaning up Homebrew"
 brew cleanup
 
-# echo "Installing Oh My ZSH!"
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+echo "Installing Oh My ZSH!"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-# echo "Setting ZSH als default shell"
-# chsh -s /bin/zsh
+echo "Setting ZSH als default shell"
+chsh -s /bin/zsh
