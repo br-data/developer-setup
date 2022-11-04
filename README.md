@@ -227,6 +227,8 @@ Folgende Plugins sind ebenfalls nützlich:
 - **Visual Studio IntelliCode**: Intelligente Autovervollständigung für Code
 - **Live Server**: Einfachen Entwicklungsserver starten
 - **Sublime Text Keymap**: Tastenkombinationen wie in Sublime Text
+- **Rainbow CSV**: Spalten in CSV-Tabellen farblich voneinander abheben
+- **Edit csv**: Mini-Excel, um CSV-Dateien in VS Code zu bearbeiten
 
 ### Kommandozeilenintegration
 
