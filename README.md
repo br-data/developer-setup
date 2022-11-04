@@ -213,8 +213,9 @@ Um den Visual Studio Code optimal nutzen zu können, sollten man noch ein paar P
 
 - **ESLint**: Linter für JavaScript-Code
 - **HTMLHint**: Linter für HTML
-- **Python**: Linter für Python
 - **markdownlint**: Linter für Markdown
+- **Python**: Support/Linter für Python
+- **R**: Support/Linter für R
 
 Linter sind für alle gängige Programmiersprachen verfügbar. Öffnet man eine Datei in einer Programmier- oder Skriptsprache, für die noch kein Linter installiert ist, bietet VS Code automatisch an, den passenden Linter zu installieren.
 
