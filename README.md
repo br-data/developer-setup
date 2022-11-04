@@ -332,6 +332,24 @@ Braucht man die die virtuelle Umgebung nicht mehr, kann man sie einfach deaktivi
 ```shell
 deactivate
 ```
+## R
+
+R ist eine Programmiersprache mit dem Fokus auf Daten. Typischerweise wird R im Zusammenspiel mit RStudio verwendet, eine Installationsanleitung dafür findet sich [hier](https://rstudio-education.github.io/hopr/starting.html). Aber auch VS Code eigent sich als Entwicklungsumgebung gut, braucht aber ein bisschen [mehr Konfiguration](https://github.com/REditorSupport/vscode-R).
+
+Das Paketmanagement ist zentralisiert auf den sogenannten CRAN-Servern mit strengen Tests. Ein CRAN-Paket wird installiert mit:
+
+```R
+install.packages("tidyverse")
+```
+
+Allerdings lassen sich auch Pakete aus anderen Quellen installieren, meist von Github. Dafür braucht man erst das Paket `devtools` und danach den Pfad zum Paket auf Github. Ein Beispiel: 
+
+```R
+install.packages("devtools")
+devtools::install_github("cutterkom/kabrutils")
+```
+
+Bei komplexeren Projekten lohnt es sich, ähnlich zu [Pythons virtuellen Umgebungen](https://github.com/br-data/developer-setup#python), `rvenv` zu nutzen, um eine robustes Management von Softwareabhängigkeiten zu implementieren. Mehr dazu [hier](https://rstudio.github.io/renv/articles/renv.html).
 
 ## Homebrew
 
