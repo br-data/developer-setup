@@ -4,17 +4,17 @@ Um gemeinsam an Software- oder Webprojekten arbeiten zu können, braucht es ein 
 
 ## Inhaltsverzeichnis
 
-- [Kommandozeile und Git-Installation](#user-content-kommandozeile-und-git-installation)
-- [Git einrichten](#user-content-git-einrichten)
-- [SSH-Schlüssel erstellen](#user-content-ssh-schlüssel-erstellen)
-- [Github und SSH](#user-content-github-und-ssh)
-- [Visual Studio Code](#user-content-visual-studio-code)
-- [Webserver](#user-content-webserver)
-- [Node.js](#user-content-nodejs)
-- [Python](#user-content-python)
-- [Homebrew](#user-content-homebrew)
-- [ZSH](#user-content-zsh)
-- [Skripte](#user-content-skripte)
+- [Kommandozeile und Git-Installation](#kommandozeile-und-git-installation)
+- [Git einrichten](#git-einrichten)
+- [SSH-Schlüssel erstellen](#ssh-schlüssel-erstellen)
+- [Github und SSH](#github-und-ssh)
+- [Visual Studio Code](#visual-studio-code)
+- [Webserver](#webserver)
+- [Node.js](#nodejs)
+- [Python](#python)
+- [Homebrew](#homebrew)
+- [ZSH](#zsh)
+- [Skripte](#skripte)
 
 ## Kommandozeile und Git-Installation
 
@@ -194,6 +194,38 @@ Diese Ausgabe dieses Befehls von `ssh-rsa ...` bis `... vorname.name@example.com
 
 Auf Github kann der Key auf unter *Settings > SSH and GPG keys* hinterlegt werden: <https://github.com/settings/keys>. Der Link funktioniert nur, wenn man sich vorher bei Github angemeldet hat.
 
+### Signierte Commits
+
+Signierte Commits ermöglichen es, den Autor eines Commits anhand eines kryptographischen Schlüssels (GPG/SSH) zu verifizieren. Das ist sinnvoll, da Commits sehr einfach gefälscht werden können.
+
+Eine hundertprozentige Sicherheit bietet aber auch diese Methode nicht, da ein böswilliger Akteur ebenfalls Commits mit seinem eigenen Schlüssel signieren kann. Trotzdem helfen signierte Commits, echte von falschen Commits zu unterscheiden.
+
+Diese Anleitung geht davon aus, dass du bereits einen [SSH-Key](#ssh-schlüssel-erstellen) hast, um auf [Github](#github-und-ssh) zuzugreifen. Zudem wird davon ausgegangen, dass du auf einem Mac- oder Linux-System arbeitest.
+
+Zuerst musst du dich bei Github anmelden und in den Benutzereinstellungen unter "SSH and GPG keys" einen neuen SSH-Schlüssel hinzufügen: https://github.com/settings/ssh/new
+
+Der *Key type* muss *Signing key* sein. Im Feld *Key* muss der Inhalt des öffentlichen Schlüssels  (`cat ~/.ssh/id_rsa.pub`) eingefügt werden.
+
+Damit Git weiß, dass Commits signiert werden sollen, musst du noch deine Git-Konfiguration anpassen (`code ~/.gitconfig`). Folgende Zeilen müssen hinzugefügt oder geändert werden:
+
+```text
+[user]
+ name = Vorname Name
+ email = vorname.name@example.com
+ signingkey = ~/.ssh/id_rsa.pub 
+
+[commit]
+ gpgsign = true
+ 
+[gpg]
+ format = ssh
+
+[tag]
+ gpgsign = true
+```
+
+Wenn alles geklappt hatte, sollten deine neuen Commits in Github mit einem *Verified*-Tag dargestellt werden.
+
 ## Visual Studio Code
 
 Visual Studio Code ist ein kostenloser Quelltext-Editor, der viele Programmiersprachen unterstützt und mit Plugins erweitert werden kann.
@@ -258,7 +290,7 @@ Die meisten Webprojekte bringen mittlerweile einen eigenen Entwicklungsserver mi
 
 ## Node.js
 
-Node.js ist eine JavaScript-Runtime für die Kommandozeile. Die einfachste Möglichkeit Node.js zu installieren besteht darin, das offizielle Installationsprogramm zu verwenden. Mac-Benutzer können Node.js auch über [Homebrew](#user-content-homebrew) installieren.
+Node.js ist eine JavaScript-Runtime für die Kommandozeile. Die einfachste Möglichkeit Node.js zu installieren besteht darin, das offizielle Installationsprogramm zu verwenden. Mac-Benutzer können Node.js auch über [Homebrew](#homebrew) installieren.
 
 Es empfiehlt sich die LTS-Version (*Long Term Support*) von Node.js herunterzuladen: <https://nodejs.org/en/download/>
 
@@ -332,6 +364,7 @@ Braucht man die die virtuelle Umgebung nicht mehr, kann man sie einfach deaktivi
 ```shell
 deactivate
 ```
+
 ## R
 
 R ist eine Programmiersprache mit dem Fokus auf Daten. Typischerweise wird R im Zusammenspiel mit RStudio verwendet, eine Installationsanleitung dafür findet sich [hier](https://rstudio-education.github.io/hopr/starting.html). Aber auch VS Code eigent sich als Entwicklungsumgebung gut, braucht aber ein bisschen [mehr Konfiguration](https://github.com/REditorSupport/vscode-R).
@@ -342,7 +375,7 @@ Das Paketmanagement ist zentralisiert auf den sogenannten CRAN-Servern mit stren
 install.packages("tidyverse")
 ```
 
-Allerdings lassen sich auch Pakete aus anderen Quellen installieren, meist von Github. Dafür braucht man erst das Paket `devtools` und danach den Pfad zum Paket auf Github. Ein Beispiel: 
+Allerdings lassen sich auch Pakete aus anderen Quellen installieren, meist von Github. Dafür braucht man erst das Paket `devtools` und danach den Pfad zum Paket auf Github. Ein Beispiel:
 
 ```R
 install.packages("devtools")
@@ -385,7 +418,7 @@ Eine grafische Lösung, um mit Hombrew installierte Dienste zu starten oder stop
 
 ZSH ist eine alternative Shell für Mac- und Linux-Systeme. Gerade in der Verbindungen mit [Oh my ZSH!](https://ohmyz.sh/) ist ZSH sehr mächtig und gut mit Plugins erweiterbar.
 
-Eine aktuelle Version von ZSH kann unter MacOS mit [Homebrew](#user-content-homebrew) installiert werden:
+Eine aktuelle Version von ZSH kann unter MacOS mit [Homebrew](#homebrew) installiert werden:
 
 ```bash
 brew install zsh zsh-completions
