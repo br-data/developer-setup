@@ -8,6 +8,7 @@ Um gemeinsam an Software- oder Webprojekten arbeiten zu können, braucht es ein 
 - [Git einrichten](#git-einrichten)
 - [SSH-Schlüssel erstellen](#ssh-schlüssel-erstellen)
 - [Github und SSH](#github-und-ssh)
+- [Google Cloud SDK](#google-cloud-sdk)
 - [Visual Studio Code](#visual-studio-code)
 - [Webserver](#webserver)
 - [Node.js](#nodejs)
@@ -225,6 +226,57 @@ Damit Git weiß, dass Commits signiert werden sollen, musst du noch deine Git-Ko
 ```
 
 Wenn alles geklappt hatte, sollten deine neuen Commits in Github mit einem *Verified*-Tag dargestellt werden.
+
+## Google Cloud SDK
+
+Das [Google Cloud SDK](https://cloud.google.com/sdk) (*kurz GCloud*) ist ein mächtiges Kommandozeilenwerkzeug (CLI), um mit der Google Cloud zu arbeiten. GCloud ermöglicht es unter anderem Buckets, Datenbanken und Anwendungen in einem Cluster zu anzulegen und zu verwalten.
+
+Die folgenden Schritte funktionieren nur, wenn bereits ein Google Cloud-Konto eingerichtet wurde.
+
+Zuerst muss das Google Cloud SDK [heruntergeladen](https://cloud.google.com/sdk/docs/install-sdk) und installiert werden.
+
+Mac-Nutzer können GCloud auch mit Homebrew installieren:
+
+```shell
+brew install google-cloud-sdk
+```
+
+Als nächstes muss GCloud authentifiziert, also mit dem eigenen Nutzeraccount verknüpft werden:
+
+```shell
+gcloud init
+```
+
+War die Authentifizierung erfolgreich, kann man sich eine Liste aller Projekte, sofern bereits vorhanden, anzeigen lassen:
+
+```shell
+gcloud projects list
+```
+
+Hat man bereits mehrere Projekte in seiner Cloud-Umgebung, kann man ein Projekt als Standardumgebung in GCloud festlegen:
+
+```shell
+gcloud config set project my-project
+```
+
+Außerdem sollte man für die lokale Entwicklungsumgebung die [Standardzone](https://cloud.google.com/compute/docs/regions-zones) setzen, wo neue Compute-Ressourcen deployed werden sollen (optional):
+
+```shell
+gcloud config set compute/zone europe-west3
+```
+
+Man kann die Standardzone und Region auch für das Projekt selbst festlegen:
+
+```shell
+gcloud compute project-info add-metadata \
+  --metadata google-compute-default-region=europe-west3,google-compute-default-zone=europe-west3-a
+```
+
+Arbeitet man in seinem Projekt mit einem [Kubernetes Cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview) (GKE), muss man die Zugangsdaten dafür abholen, um beispielsweise mit `kubectl` Ressourcen abfragen, verändern oder anlegen zu können:
+
+```shell
+gcloud container clusters get-credentials my-project --region=europe-west3
+```
 
 ## Visual Studio Code
 
