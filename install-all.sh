@@ -60,7 +60,7 @@ tools=(
   imagemagick
   jq
   nmap
-  node@16
+  nvm
   parallel
   postgresql
   python
@@ -70,6 +70,9 @@ tools=(
   wget
   xsv
   zsh
+  android-platform-tools
+  google-cloud-sdk
+  cocoapods
 )
 
 brew install ${tools[@]} || true
@@ -92,11 +95,17 @@ apps=(
   postico
   rstudio
   signal
-  slack
   visual-studio-code
   vlc
+  microsoft-excel
+  microsoft-word
+  android-studio
+  microsoft-outlook
+  drawio
+  displaylink
 )
 
+# TODO: Skip if already installed!
 brew install --cask --appdir=$APP_DIR ${apps[@]} || true
 
 echo "Cleaning up Homebrew"
@@ -107,3 +116,14 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 echo "Setting ZSH als default shell"
 chsh -s /bin/zsh
+
+echo "Setup nvm"
+mkdir ~/.nvm
+sed -i~ '\nexport NVM_DIR="$HOME/.nvm"\n. "/usr/local/opt/nvm/nvm.sh"' ~/.zshrc
+
+echo "Setup Gcloud"
+sed -i~ 'source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"' ~/.zshrc
+sed -i~ 'source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"' ~/.zshrc
+
+echo "Installing GCloud utils"
+gcloud components install kubectl gke-gcloud-auth-plugin

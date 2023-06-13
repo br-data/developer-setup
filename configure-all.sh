@@ -61,7 +61,7 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 # Input settings
 
 echo "Trackpad: Disable natural scrolling"
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
 
 echo "Trackpad: Enable tap to click"
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
